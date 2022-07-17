@@ -53,11 +53,5 @@ for i in range(len(appears) - 1):
         G.add_edge(appears[i], appears[i + 1], weight=1)
     
 G.remove_edges_from(nx.selfloop_edges(G))
-d = dict(G.degree)
 
-pos = nx.spring_layout(G)
-nx.draw(G, pos, with_labels=True, node_size=[v * 200 for v in d.values()])
-
-for edge in G.edges(data='weight'):
-    nx.draw_networkx_edges(G, pos, edgelist=[edge], width=edge[2]/8)
-plt.show()
+nx.write_gexf(G, 'lotr1.gexf')
